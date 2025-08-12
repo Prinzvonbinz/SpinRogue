@@ -95,7 +95,7 @@ function getCardById(id) {
 
 function getChestCost() {
   // exponentiell steigend: 12 * 1.5^chestOpenedCount
-  return chestCostBase * Math.pow(2, chestOpenedCount);
+  return chestCostBase * Math.pow(1.5, chestOpenedCount);
 }
 
 // Persistenz
