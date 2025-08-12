@@ -1,0 +1,250 @@
+:root {
+  --bg: #0b132b;
+  --circle-base: #1c2541;
+  --circle-stage1: #3a506b;
+  --circle-stage2: #5bc0be;
+  --circle-stage3: #6fffe9;
+  --text-light: #dbe9ee;
+  --gold-color: #ffd60a;
+  --card-gray: #888;
+  --card-blue: #3a72b9;
+  --card-purple: #8546a4;
+  --card-gold: #e6b422;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg);
+  color: var(--text-light);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+header {
+  text-align: center;
+  padding: 16px 0;
+  font-size: 1.8em;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  border-bottom: 1px solid #222a44;
+}
+
+#game {
+  padding: 16px;
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#circle-container {
+  position: relative;
+  margin: 24px auto 60px auto; /* mehr Abstand unten */
+  width: 200px;
+  height: 200px;
+}
+
+#gold-display {
+  position: absolute;
+  bottom: -50px; /* mehr Abstand nach unten */
+  width: 100%;
+  font-size: 1.3em; /* etwas größer */
+  font-weight: 700;
+  color: var(--gold-color);
+  text-shadow: 0 0 4px #b38900;
+}
+#circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: var(--circle-base);
+  border: 6px solid var(--circle-stage1);
+  margin: 0 auto;
+  transform-origin: center center;
+  transition: border-color 0.3s ease;
+}
+
+button {
+  margin: 12px auto;
+  padding: 12px 24px;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 12px;
+  background: var(--gold-color);
+  color: #222;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.25s ease;
+  display: block;
+  max-width: 280px;
+  width: 90%;
+}
+
+button:disabled {
+  background: #777;
+  cursor: not-allowed;
+  color: #ccc;
+}
+
+.reset-btn {
+  background: #cc3333;
+  margin-top: 6px;
+  font-size: 0.95em;
+}
+
+.reset-btn:hover {
+  background: #ff4c4c;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: var(--circle-base);
+  padding: 20px;
+  border-radius: 14px;
+  width: 90%;
+  max-width: 380px;
+  box-shadow: 0 0 15px rgba(255, 214, 0, 0.6);
+  text-align: center;
+  color: var(--text-light);
+}
+
+#cards-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-start; /* linksbündig statt space-between */
+  gap: 12px;
+  flex-wrap: nowrap;
+  overflow: visible;
+  padding: 0 10px;
+}
+
+.card {
+  flex: 0 0 20%; /* 3 Karten nebeneinander je ca. 20% der Breite */
+  max-width: 120px;
+  min-width: 100px;
+  background: #122940;
+  border-radius: 14px;
+  padding: 12px 12px 30px 12px;
+  color: var(--text-light);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  user-select: none;
+  position: relative;
+  left: -20px;
+  border: 3px solid transparent;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 0 20px var(--gold-color);
+  border-color: var(--gold-color);
+}
+
+.card-title {
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-size: 1.1em;
+  word-wrap: break-word;
+}
+
+.card-desc {
+  font-size: 0.85em;
+  line-height: 1.3em;
+  min-height: 3.8em;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.card-level {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font-size: 0.9em;
+  background: var(--gold-color);
+  color: #222;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-weight: 700;
+  user-select: none;
+}
+
+.gray {
+  border-color: var(--card-gray);
+}
+
+.blue {
+  border-color: var(--card-blue);
+  box-shadow: 0 0 12px var(--card-blue);
+}
+
+.purple {
+  border-color: var(--card-purple);
+  box-shadow: 0 0 15px var(--card-purple);
+}
+
+.gold {
+  border-color: var(--card-gold);
+  box-shadow: 0 0 20px var(--card-gold);
+}
+
+#upgrades-list {
+  margin-top: 32px;
+  text-align: left;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#upgrades-list h2 {
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 1.4em;
+}
+
+#upgrades-ul {
+  list-style: none;
+  padding: 0;
+  max-height: 160px;
+  overflow-y: auto;
+  border: 1px solid #224a77;
+  border-radius: 12px;
+  background: #0d1b2a;
+}
+
+#upgrades-ul li {
+  padding: 10px 12px;
+  border-bottom: 1px solid #224a77;
+  font-weight: 600;
+  font-size: 0.9em;
+  color: var(--text-light);
+}
+
+#upgrades-ul li:last-child {
+  border-bottom: none;
+}
+
+footer {
+  text-align: center;
+  padding: 12px 0;
+  font-size: 0.9em;
+  color: #567;
+  user-select: none;
+}
