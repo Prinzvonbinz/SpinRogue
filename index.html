@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>SpinRogue</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<main id="app">
+  <header><h1>SpinRogue</h1></header>
+
+  <section id="game">
+    <div id="circle-container">
+      <div id="circle"></div>
+      <div id="gold-display">Gold: <span id="gold">0</span></div>
+    </div>
+
+    <button id="open-chest" disabled>Truhe öffnen (12 Gold)</button>
+    <button id="reset-game" class="reset-btn">Spielstand zurücksetzen</button>
+
+    <section id="chest-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2>Truhe öffnen</h2>
+        <div id="cards-container"></div>
+        <button id="close-chest">Schließen</button>
+      </div>
+    </section>
+
+    <section id="upgrades-list">
+      <h2>Meine Upgrades</h2>
+      <ul id="upgrades-ul"></ul>
+    </section>
+  </section>
+
+  <footer>© 2025 SpinRogue</footer>
+</main>
+
+<script src="main.js"></script>
+</body>
+</html>
