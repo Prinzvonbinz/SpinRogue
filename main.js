@@ -94,9 +94,7 @@ function getCardById(id) {
 }
 
 function getChestCost() {
-  // exponentiell steigend: 3 + 3^chestOpenedCount
-  return chestCostBase + (3 *chestOpenedCount);
-  function increaseChestPrice() {
+ function increaseChestPrice() {
     if (chestPrice >= 100000) {
         chestPrice += 10000;
     } else if (chestPrice >= 10000) {
