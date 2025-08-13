@@ -17,7 +17,7 @@ let goldPerRotation = 3;
 let animationFrameId = null;
 
 let chestOpenedCount = 0;
-const chestCostBase = 12;
+const chestCostBase = 3;
 
 let upgrades = {}; // key: cardId, value: level (Anzahl)
 
@@ -94,8 +94,8 @@ function getCardById(id) {
 }
 
 function getChestCost() {
-  // exponentiell steigend: 12 * 1.5^chestOpenedCount
-  return chestCostBase * Math.pow(1.5, chestOpenedCount);
+  // exponentiell steigend: 3 + 3^chestOpenedCount
+  return chestCostBase + (3 *chestOpenedCount);
 }
 
 // Persistenz
