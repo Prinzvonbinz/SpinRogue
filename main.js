@@ -94,23 +94,8 @@ function getCardById(id) {
 }
 
 function getChestCost() {
- function increaseChestPrice() {
-    if (chestPrice >= 100000) {
-        chestPrice += 10000;
-    } else if (chestPrice >= 10000) {
-        chestPrice += 100;
-    } else if (chestPrice >= 1002) {
-        chestPrice += 50;
-    } else if (chestPrice >= 602) {
-        chestPrice += 25;
-    } else if (chestPrice >= 302) {
-        chestPrice += 10;
-    } else if (chestPrice >= 102) {
-        chestPrice += 5;
-    } else {
-        chestPrice += 3;
-    }
-  }
+  // exponentiell steigend: 3 + 9^chestOpenedCount
+  return chestCostBase + (9 *chestOpenedCount);
 }
 
 // Persistenz
@@ -254,9 +239,9 @@ function openChest() {
   const cost = getChestCost();
   if (gold < cost) return;
   gold -= cost;
-goldDisplay.textContent = gold;
-increaseChestPrice(); // Dynamische Preissteigerung
-updateOpenChestBtn();
+  goldDisplay.textContent = gold;
+  chestOpenedCount++;
+  updateOpenChestBtn();
 
   chestModal.classList.remove("hidden");
   cardsContainer.innerHTML = "";
