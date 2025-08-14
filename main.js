@@ -19,6 +19,38 @@ let animationFrameId = null;
 let chestOpenedCount = 0;
 const chestCostBase = 3;
 
+function canUpgrade(id) {
+  const currentLevel = upgrades[id] || 0;
+
+  // Noch nicht auf 10 → immer upgraden möglich
+  if (currentLevel < 10) return true;
+
+  // Auf 10 → prüfen, ob alle anderen auch >= 10
+  for (const [otherId, lvl] of Object.entries(upgrades)) {
+    if (otherId !== id && lvl < 10) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function selectCard(id) {
+  // Prüfen ob Upgrade erlaubt ist
+  if (!canUpgrade(id)) {
+    alert("Du musst erst alle anderen Karten auf Level 10 bringen, bevor du diese weiter upgraden kannst!");
+    return;
+  }
+
+  // Upgrade erhöhen
+  if (!upgrades[id]) upgrades[id] = 0;
+  upgrades[id]++;
+
+  recalcEffects();
+  saveState();
+  updateUpgradesList();
+  closeChest();
+}
+
 let upgrades = {}; // key: cardId, value: level (Anzahl)
 
 
